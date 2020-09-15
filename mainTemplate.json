@@ -29,12 +29,43 @@
         "description": "Please use only lower case and digits. Max 11 chars. If empty some random will be used."
       },
       "defaultValue": ""
+    },
+    "imageRegistryServer": {
+      "type": "string",
+      "metadata": {
+        "description": "The server for customized locustio container"
+      },
+      "defaultValue": ""
+    },
+    "imageRegistryUser": {
+      "type": "string",
+      "metadata": {
+        "description": "The user for customized locustio container"
+      },
+      "defaultValue": ""
+    },
+    "imageRegistryPass": {
+      "type": "string",
+      "metadata": {
+        "description": "The password for customized locustio container"
+      },
+      "defaultValue": ""
+    },
+    "locustContainer": {
+      "type": "string",
+      "metadata": {
+        "description": "The locust container to use"
+      },
+      "defaultValue": ""
     }
   },
   "variables": {
-    "locustImage": "locustio/locust:1.1.1",
+    "locustImage": "[if(empty(parameters('locustContainer')), 'locustio/locust:1.1.1', parameters('locustContainer')]",
     "location": "[parameters('location')]",
     "prefix": "[if(empty(parameters('prefix')), uniqueString(resourceGroup().id), parameters('prefix'))]",
+    "imageRegistryServer": "[parameters('imageRegistryServer')]",
+    "imageRegistryUser": "[parameters('imageRegistryUser')]",
+    "imageRegistryPass": "[parameters('imageRegistryPass')]",
     "azureCliImage": "microsoft/azure-cli",
     "locustfile": "[if(empty(parameters('locustfile')), 'ZnJvbSBsb2N1c3QgaW1wb3J0IEh0dHBVc2VyLCB0YXNrLCBiZXR3ZWVuCgpjbGFzcyBRdWlja3N0YXJ0VXNlcihIdHRwVXNlcik6CiAgICB3YWl0X3RpbWUgPSBiZXR3ZWVuKDAsIDEpCgogICAgZGVmIG9uX3N0YXJ0KHNlbGYpOgogICAgICAgIHNlbGYuY2xpZW50LmhlYWRlcnNbJ1VzZXItQWdlbnQnXSA9ICJNb3ppbGxhLzUuMCIKCiAgICBAdGFzawogICAgZGVmIGluZGV4X3BhZ2Uoc2VsZik6CiAgICAgICAgc2VsZi5jbGllbnQuZ2V0KCIvIik=', parameters('locustfile'))]",
     "storageAccountName": "[variables('prefix')]",
@@ -240,6 +271,13 @@
                 }
               ]
             }
+          }
+        ],
+        "imageRegistryCredentials": [
+          {
+            "server": "[variables('imageRegistryServer')]",
+            "username": "[variables('imageRegistryUser')]",
+            "password": "[variables('imageRegistryPass')]"
           }
         ],
         "osType": "Linux",

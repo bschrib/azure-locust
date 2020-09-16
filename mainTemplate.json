@@ -57,6 +57,13 @@
         "description": "The locust container to use"
       },
       "defaultValue": ""
+    },
+    "azureNetworkProfile": {
+      "type": "string",
+      "metadata": {
+        "description": "The Azure network profile to use for containers"
+      },
+      "defaultValue": ""
     }
   },
   "variables": {
@@ -68,6 +75,7 @@
     "imageRegistryPass": "[parameters('imageRegistryPass')]",
     "azureCliImage": "microsoft/azure-cli",
     "locustfile": "[if(empty(parameters('locustfile')), 'ZnJvbSBsb2N1c3QgaW1wb3J0IEh0dHBVc2VyLCB0YXNrLCBiZXR3ZWVuCgpjbGFzcyBRdWlja3N0YXJ0VXNlcihIdHRwVXNlcik6CiAgICB3YWl0X3RpbWUgPSBiZXR3ZWVuKDAsIDEpCgogICAgZGVmIG9uX3N0YXJ0KHNlbGYpOgogICAgICAgIHNlbGYuY2xpZW50LmhlYWRlcnNbJ1VzZXItQWdlbnQnXSA9ICJNb3ppbGxhLzUuMCIKCiAgICBAdGFzawogICAgZGVmIGluZGV4X3BhZ2Uoc2VsZik6CiAgICAgICAgc2VsZi5jbGllbnQuZ2V0KCIvIik=', parameters('locustfile'))]",
+    "azureNetworkProfile": "[parameters('azureNetworkProfile')]",
     "storageAccountName": "[variables('prefix')]",
     "containerProvisionerName": "[concat(variables('storageAccountName'), '-provisioner')]",
     "containerName": "createshare",
@@ -157,7 +165,10 @@
           }
         ],
         "restartPolicy": "OnFailure",
-        "osType": "Linux"
+        "osType": "Linux",
+        "networkProfile": {
+          "id": "[variables('azureNetworkProfile')]"
+        },
       }
     },
     {
@@ -213,6 +224,9 @@
             }
         ],
         "osType": "Linux",
+        "networkProfile": {
+          "id": "[variables('azureNetworkProfile')]"
+        },
         "ipAddress": {
           "type": "Private",
           "ports": [

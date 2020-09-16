@@ -205,6 +205,13 @@
             }
           }
         ],
+        "imageRegistryCredentials": [
+            {
+                "server": "[variables('imageRegistryServer')]",
+                "username": "[variables('imageRegistryUser')]",
+                "password": "[variables('imageRegistryPass')]"
+            }
+        ],
         "osType": "Linux",
         "ipAddress": {
           "type": "Private",
@@ -217,8 +224,7 @@
               "protocol": "tcp",
               "port": "5557"
             }
-          ],
-          "dnsNameLabel": "[variables('containerDns')]"
+          ]
         },
         "volumes": [
           {

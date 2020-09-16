@@ -165,10 +165,7 @@
           }
         ],
         "restartPolicy": "OnFailure",
-        "osType": "Linux",
-        "networkProfile": {
-          "id": "[variables('azureNetworkProfile')]"
-        }
+        "osType": "Linux"
       }
     },
     {

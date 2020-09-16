@@ -217,7 +217,7 @@
               "protocol": "tcp",
               "port": "5557"
             }
-          ],
+          ]
         },
         "volumes": [
           {

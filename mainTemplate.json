@@ -60,7 +60,7 @@
     }
   },
   "variables": {
-    "locustImage": "[if(empty(parameters('locustContainer')), 'locustio/locust:1.1.1', parameters('locustContainer')]",
+    "locustImage": "[if(empty(parameters('locustContainer')), 'locustio/locust:1.1.1', parameters('locustContainer'))]",
     "location": "[parameters('location')]",
     "prefix": "[if(empty(parameters('prefix')), uniqueString(resourceGroup().id), parameters('prefix'))]",
     "imageRegistryServer": "[parameters('imageRegistryServer')]",
@@ -207,7 +207,7 @@
         ],
         "osType": "Linux",
         "ipAddress": {
-          "type": "Public",
+          "type": "Private",
           "ports": [
             {
               "protocol": "tcp",
@@ -218,7 +218,7 @@
               "port": "5557"
             }
           ],
-          "dnsNameLabel": "[variables('containerDns')]"
+          //"dnsNameLabel": "[variables('containerDns')]"
         },
         "volumes": [
           {

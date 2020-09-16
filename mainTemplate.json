@@ -217,7 +217,8 @@
               "protocol": "tcp",
               "port": "5557"
             }
-          ]
+          ],
+          "dnsNameLabel": "[variables('containerDns')]"
         },
         "volumes": [
           {

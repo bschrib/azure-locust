@@ -257,7 +257,7 @@
                 "/mnt/locust/locustfile.py",
                 "--worker",
                 "--master-host",
-                "[resourceId('Microsoft.ContainerInstance/containerGroups/', variables('containerMasterGroup')).ipAddress.ip[0].value]"
+                "[reference(resourceId('Microsoft.ContainerInstance/containerGroups/', variables('containerMasterGroup'))).ipAddress.ip]"
               ],
               "resources": {
                 "requests": {

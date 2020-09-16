@@ -85,8 +85,6 @@
     "containerSlaveGroup": "[concat(variables('prefix'),'-slave')]",
     "containerSlaveName": "slave",
     "containerSlaveImage": "[variables('locustImage')]",
-    "containerMasterAddress": "[concat(variables('containerDns'), '.', variables('location'), '.azurecontainer.io')]",
-    "containerMasterUrl": "[concat('http://', variables('containerMasterAddress'), ':8089')]",
     "storageAccountId": "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
   },
   "resources": [
@@ -304,10 +302,6 @@
     "prefix": {
       "type": "string",
       "value": "[variables('prefix')]"
-    },
-    "url": {
-      "type": "string",
-      "value": "[variables('containerMasterUrl')]"
     }
   }
 }

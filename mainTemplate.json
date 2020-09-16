@@ -168,7 +168,7 @@
         "osType": "Linux",
         "networkProfile": {
           "id": "[variables('azureNetworkProfile')]"
-        },
+        }
       }
     },
     {
@@ -225,7 +225,7 @@
         ],
         "osType": "Linux",
         "networkProfile": {
-          "id": "[variables('azureNetworkProfile')]"
+            "id": "[variables('azureNetworkProfile')]"
         },
         "ipAddress": {
           "type": "Private",
@@ -301,6 +301,9 @@
           }
         ],
         "osType": "Linux",
+        "networkProfile": {
+            "id": "[variables('azureNetworkProfile')]"
+        },
         "volumes": [
           {
             "name": "filesharevolume",

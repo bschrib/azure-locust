@@ -79,7 +79,6 @@
     "storageAccountName": "[variables('prefix')]",
     "containerProvisionerName": "[concat(variables('storageAccountName'), '-provisioner')]",
     "containerName": "createshare",
-    "containerDns": "[concat(variables('prefix'),'-master')]",
     "containerMasterGroup": "[concat(variables('prefix'),'-master')]",
     "containerMasterName": "master",
     "containerMasterImage": "[variables('locustImage')]",
@@ -260,7 +259,7 @@
                 "/mnt/locust/locustfile.py",
                 "--worker",
                 "--master-host",
-                "[variables('containerMasterAddress')]"
+                "[resourceId('Microsoft.ContainerInstance/containerGroups/', variables('containerMasterGroup')).ipAddress.ip]"
               ],
               "resources": {
                 "requests": {

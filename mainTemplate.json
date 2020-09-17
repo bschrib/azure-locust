@@ -169,7 +169,7 @@
               "command": [
                 "locust",
                 "-f",
-                "/mnt/locust/locustfile.py",
+                "/home/simulate_b2c_journey.py",
                 "--master",
                 "--host",
                 "https://"
@@ -254,7 +254,7 @@
               "command": [
                 "locust",
                 "-f",
-                "/mnt/locust/locustfile.py",
+                "/home/simulate_b2c_journey.py",
                 "--worker",
                 "--master-host",
                 "[reference(resourceId('Microsoft.ContainerInstance/containerGroups/', variables('containerMasterGroup'))).ipAddress.ip]"

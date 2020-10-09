@@ -74,7 +74,7 @@
     "imageRegistryUser": "[parameters('imageRegistryUser')]",
     "imageRegistryPass": "[parameters('imageRegistryPass')]",
     "azureCliImage": "microsoft/azure-cli",
-    "locustfileToRun": "[parameters('locustfileToRun')]",
+    "locustfileToRun": "[concat('/home/locust/', parameters('locustfileToRun'))]",
     "azureNetworkProfile": "[parameters('azureNetworkProfile')]",
     "containerMasterGroup": "[concat(variables('prefix'),'-master')]",
     "containerMasterName": "master",
@@ -98,7 +98,7 @@
               "command": [
                 "locust",
                 "-f",
-                "[concat('/home/locust/', variables('locustfileToRun'))]",
+                "[variables('locustfileToRun')]",
                 "--master",
                 "--host",
                 "https://"
@@ -164,7 +164,7 @@
               "command": [
                 "locust",
                 "-f",
-                "[concat('/home/locust/', variables('locustfileToRun'))]",
+                "[variables('locustfileToRun')]",
                 "--worker",
                 "--master-host",
                 "[reference(resourceId('Microsoft.ContainerInstance/containerGroups/', variables('containerMasterGroup'))).ipAddress.ip]"

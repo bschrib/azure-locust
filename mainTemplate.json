@@ -23,6 +23,13 @@
       },
       "defaultValue": ""
     },
+    "locustfileToRun": {
+      "type": "string",
+      "metadata": {
+        "description": "Locustfile fullname (e.g. locustfile.py) which the test will call to run."
+      },
+      "defaultValue": ""
+    },
     "prefix": {
       "type": "string",
       "metadata": {
@@ -75,6 +82,7 @@
     "imageRegistryPass": "[parameters('imageRegistryPass')]",
     "azureCliImage": "microsoft/azure-cli",
     "locustfile": "[if(empty(parameters('locustfile')), 'ZnJvbSBsb2N1c3QgaW1wb3J0IEh0dHBVc2VyLCB0YXNrLCBiZXR3ZWVuCgpjbGFzcyBRdWlja3N0YXJ0VXNlcihIdHRwVXNlcik6CiAgICB3YWl0X3RpbWUgPSBiZXR3ZWVuKDAsIDEpCgogICAgZGVmIG9uX3N0YXJ0KHNlbGYpOgogICAgICAgIHNlbGYuY2xpZW50LmhlYWRlcnNbJ1VzZXItQWdlbnQnXSA9ICJNb3ppbGxhLzUuMCIKCiAgICBAdGFzawogICAgZGVmIGluZGV4X3BhZ2Uoc2VsZik6CiAgICAgICAgc2VsZi5jbGllbnQuZ2V0KCIvIik=', parameters('locustfile'))]",
+    "locustfileToRun": "[parameters('locustfileToRun')]",
     "azureNetworkProfile": "[parameters('azureNetworkProfile')]",
     "storageAccountName": "[variables('prefix')]",
     "containerProvisionerName": "[concat(variables('storageAccountName'), '-provisioner')]",
@@ -169,7 +177,7 @@
               "command": [
                 "locust",
                 "-f",
-                "/home/locust/simulate_b2c_journey.py",
+                "/home/locust/[variables('locustfileToRun')]",
                 "--master",
                 "--host",
                 "https://"
@@ -254,7 +262,8 @@
               "command": [
                 "locust",
                 "-f",
-                "/home/locust/simulate_b2c_journey.py",
+                "[variables('locustfile')]"
+                "/home/locust/[variables('locustfileToRun')]",
                 "--worker",
                 "--master-host",
                 "[reference(resourceId('Microsoft.ContainerInstance/containerGroups/', variables('containerMasterGroup'))).ipAddress.ip]"

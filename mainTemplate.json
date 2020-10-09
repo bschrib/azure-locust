@@ -99,6 +99,7 @@
                 "locust",
                 "-f",
                 "[variables('locustfileToRun')]",
+                "--logfile /home/locust/locustlog.log",
                 "--master",
                 "--host",
                 "https://"
@@ -165,6 +166,7 @@
                 "locust",
                 "-f",
                 "[variables('locustfileToRun')]",
+                "--logfile /home/locust/locustlog.log",
                 "--worker",
                 "--master-host",
                 "[reference(resourceId('Microsoft.ContainerInstance/containerGroups/', variables('containerMasterGroup'))).ipAddress.ip]"

@@ -77,8 +77,6 @@
     "locustfileToRun": "[parameters('locustfileToRun')]",
     "azureNetworkProfile": "[parameters('azureNetworkProfile')]",
     "storageAccountName": "[variables('prefix')]",
-    "containerProvisionerName": "[concat(variables('storageAccountName'), '-provisioner')]",
-    "containerName": "createshare",
     "containerMasterGroup": "[concat(variables('prefix'),'-master')]",
     "containerMasterName": "master",
     "containerMasterImage": "[variables('locustImage')]",
@@ -93,9 +91,6 @@
       "type": "Microsoft.ContainerInstance/containerGroups",
       "apiVersion": "2018-10-01",
       "location": "[variables('location')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.ContainerInstance/containerGroups/', variables('containerProvisionerName'))]"
-      ],
       "properties": {
         "containers": [
           {
@@ -174,9 +169,6 @@
       "type": "Microsoft.ContainerInstance/containerGroups",
       "apiVersion": "2018-10-01",
       "location": "[variables('location')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.ContainerInstance/containerGroups/', variables('containerProvisionerName'))]"
-      ],
       "copy": {
         "name": "slavecopy",
         "count": "[parameters('instances')]"

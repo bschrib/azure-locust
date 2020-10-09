@@ -18,6 +18,7 @@
     },
     "locustfileToRun": {
       "type": "string",
+      "defaultValue": "locustfile.py",
       "metadata": {
         "description": "Locustfile fullname (e.g. locustfile.py) which the test will call to run."
       },
@@ -76,14 +77,12 @@
     "azureCliImage": "microsoft/azure-cli",
     "locustfileToRun": "[parameters('locustfileToRun')]",
     "azureNetworkProfile": "[parameters('azureNetworkProfile')]",
-    "storageAccountName": "[variables('prefix')]",
     "containerMasterGroup": "[concat(variables('prefix'),'-master')]",
     "containerMasterName": "master",
     "containerMasterImage": "[variables('locustImage')]",
     "containerSlaveGroup": "[concat(variables('prefix'),'-slave')]",
     "containerSlaveName": "slave",
-    "containerSlaveImage": "[variables('locustImage')]",
-    "storageAccountId": "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
+    "containerSlaveImage": "[variables('locustImage')]"
   },
   "resources": [
     {
@@ -151,17 +150,7 @@
               "port": "5557"
             }
           ]
-        },
-        "volumes": [
-          {
-            "name": "filesharevolume",
-            "azureFile": {
-              "shareName": "scripts",
-              "storageAccountName": "[variables('storageAccountName')]",
-              "storageAccountKey": "[listKeys(variables('storageAccountId'),'2017-10-01').keys[0].value]"
-            }
-          }
-        ]
+        }
       }
     },
     {
@@ -212,17 +201,7 @@
         "osType": "Linux",
         "networkProfile": {
             "id": "[variables('azureNetworkProfile')]"
-        },
-        "volumes": [
-          {
-            "name": "filesharevolume",
-            "azureFile": {
-              "shareName": "scripts",
-              "storageAccountName": "[variables('storageAccountName')]",
-              "storageAccountKey": "[listKeys(variables('storageAccountId'),'2017-10-01').keys[0].value]"
-            }
-          }
-        ]
+        }
       }
     }
   ],

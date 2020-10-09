@@ -11,10 +11,10 @@
     },
     "instances": {
       "type": "int",
+      "defaultValue": 30,
       "metadata": {
         "description": "Number of slaves"
-      },
-      "defaultValue": 30
+      }
     },
     "locustfileToRun": {
       "type": "string",

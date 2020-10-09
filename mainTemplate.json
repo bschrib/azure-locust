@@ -116,12 +116,6 @@
                 {
                   "port": 5557
                 }
-              ],
-              "volumeMounts": [
-                {
-                  "name": "filesharevolume",
-                  "mountPath": "/mnt/locust"
-                }
               ]
             }
           }
@@ -180,13 +174,7 @@
                   "cpu": 1.5,
                   "memoryInGb": 0.5
                 }
-              },
-              "volumeMounts": [
-                {
-                  "name": "filesharevolume",
-                  "mountPath": "/mnt/locust"
-                }
-              ]
+              }
             }
           }
         ],
